@@ -1,3 +1,4 @@
+本仓库所有代码来自于https://github.com/unclezs/uncle-novel.git, 由于fork原仓库失败,因此直接获取源码后commit到该仓库,仅用于学习
 <p align="center">
 	<a href="https://github.com/unclezs/uncle-novel/blob/master/LICENSE">
 		<img src="https://gitee.com/unclezs/image-blog/raw/master/20210103184920.png"
