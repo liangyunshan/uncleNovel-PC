@@ -1,0 +1,24 @@
+@import "../define/global";
+
+.loading {
+  -fx-bg-color: -fx-base;
+
+  @include shadow;
+  -fx-pref-width: 65px;
+  -fx-max-width: 70px;
+  -fx-max-height: 90px;
+  -fx-alignment: center;
+  -fx-spacing: 15px;
+  -fx-padding: 10px 0 10px 0;
+  -fx-background-color: -fx-bg-color;
+
+  .jfx-spinner {
+    -jfx-radius: 13px;
+  }
+
+  .jfx-button {
+    @include ladderTextFill(-fx-bg-color);
+    -jfx-disable-visual-focus: true;
+    -fx-text-alignment: center;
+  }
+}

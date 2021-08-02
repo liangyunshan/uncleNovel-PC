@@ -1,0 +1,107 @@
+@import "../define/_global";
+
+.stage-decorator {
+  -fx-header-bg-color: #3b4252;
+  -fx-bg-color: -fx-base;
+  -fx-background-color: transparent;
+  -fx-padding: 20px;
+  -fx-background-insets: 0;
+
+  .stage-decorator-root {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 20, 0.19, 0, 6);
+    -fx-border-color: transparent;
+    -fx-border-width: 4 !important;
+    -fx-background-color: transparent;
+    -fx-background-radius: $stage-border-radius $stage-border-radius 0 0;
+    -fx-border-radius: $stage-border-radius $stage-border-radius 0 0;
+    -fx-background-insets: 0;
+
+    .stage-decorator-header {
+      @include shadow-1();
+      -fx-background-radius: $stage-border-radius $stage-border-radius 0 0;
+      -fx-border-radius: $stage-border-radius $stage-border-radius 0 0;
+      -fx-alignment: center-right;
+      -fx-min-height: 50px;
+      -fx-max-height: 50px;
+      -fx-background-color: -fx-header-bg-color;
+
+      // 窗口顶部Logo
+      .stage-decorator-logo {
+        -fx-padding: 0 0 0 20px;
+        -fx-spacing: 4px;
+        -fx-alignment: center-left;
+
+        .stage-decorator-logo-icon {
+          -fx-fit-width: 32px;
+          -fx-fit-height: 32px;
+        }
+
+        .stage-decorator-logo-title {
+          @include ladderTextFill(-fx-header-bg-color);
+          -fx-font-size: 17px;
+        }
+      }
+
+      // 窗口顶部按钮
+      .stage-decorator-actions {
+        -fx-alignment: center-right;
+        -fx-padding: 0 15px 0 0;
+        -fx-spacing: 4px;
+        -fx-min-width: 200px;
+
+        .icon-button {
+          @include ladderTextFill(-fx-header-bg-color);
+          -fx-content-display: GRAPHIC_ONLY;
+
+          .icon {
+            -fx-icon-size: 15px;
+            -fx-text-fill: inherit;
+
+            &:hover {
+              @include ladderTextFillLight(-fx-header-bg-color);
+            }
+          }
+        }
+
+        .stage-decorator-actions-exit {
+
+          &:hover {
+            -fx-background-color: $md_red_A700;
+
+            .icon {
+              -fx-text-fill: white !important;
+            }
+          }
+        }
+
+        .stage-decorator-action-separator {
+          @include ladderBgColor(-fx-header-bg-color);
+          -fx-pref-width: 1px;
+          -fx-max-height: 22px;
+        }
+      }
+    }
+
+    .stage-decorator-content {
+      -fx-padding: 48px 0 0 0;
+      -fx-background-color: transparent;
+    }
+  }
+
+  &.hidden-header {
+    -fx-header-bg-color: transparent;
+
+    .stage-decorator-content {
+      -fx-padding: 0;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+

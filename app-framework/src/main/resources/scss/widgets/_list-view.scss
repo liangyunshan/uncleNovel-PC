@@ -1,0 +1,48 @@
+@import "../define/_global";
+
+.list-view {
+  -fx-selected-color: #009688;
+  -fx-separator-color: #bbb;
+  -fx-background-color: -fx-base;
+  -fx-background-insets: 0;
+
+  &:focused {
+    -fx-background-color: -fx-base;
+  }
+
+  .list-cell {
+    @include ladderTextFill(-fx-base);
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: -fx-separator-color;
+
+    .label, .check-box {
+      @include ladderTextFill(-fx-base);
+    }
+
+    &:empty {
+      -fx-background-color: transparent;
+      -fx-border-color: transparent;
+      -fx-border-width: 0;
+    }
+
+    &:selected {
+      @include ladderTextFill(-fx-selected-color);
+      -fx-background-color: -fx-selected-color;
+
+      .label, .check-box, .icon {
+        @include ladderTextFillForce(-fx-selected-color);
+      }
+
+      .check-box {
+        .box {
+          -fx-border-color: ladder(-fx-selected-color, $white_color 49%, $black_color 50%);
+        }
+
+        &:selected .box {
+          -fx-border-color: transparent;
+        }
+      }
+    }
+  }
+}

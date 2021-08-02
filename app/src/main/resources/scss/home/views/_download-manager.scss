@@ -1,0 +1,67 @@
+@import "../../define/global";
+
+$tab-radius: 5px;
+
+.download-manager {
+  .tab-button {
+    &.history-tab {
+      -fx-border-radius: 0 $tab-radius $tab-radius 0;
+      -fx-background-radius: 0 $tab-radius $tab-radius 0;
+    }
+
+    &.tasks-tab {
+      -fx-border-radius: $tab-radius 0 0 $tab-radius;
+      -fx-background-radius: $tab-radius 0 0 $tab-radius;
+    }
+  }
+
+  .table-view {
+    .table-row-cell {
+      &:selected, &:filled:selected, &:filled > .table-cell:selected {
+        -fx-table-cell-border-color: transparent;
+        -fx-background-color: -fx-base;
+
+        .table-cell, .icon, .label {
+          @include ladderTextFill(-fx-base);
+        }
+
+        .check-box .box {
+          -fx-border-color: ladder(-fx-base, $white_color 49%, $black_color 50%);
+        }
+      }
+    }
+
+    .action-cell {
+      .icon {
+        &:hover {
+          -fx-text-fill: theme-icon-hover-color !important;
+        }
+      }
+    }
+
+    .progress-cell {
+      -fx-alignment: center-left;
+
+      .progress-info-box {
+        .label {
+          -fx-font-size: 11px;
+        }
+      }
+    }
+
+    .download-action-col {
+      .label {
+        -fx-padding: 0 0 0 30px;
+      }
+    }
+
+    .download-action-cell {
+      -fx-alignment: center-left !important;
+
+      .download-action {
+        -fx-padding: 0 0 0 10px;
+        -fx-alignment: center-left !important;
+      }
+    }
+  }
+}

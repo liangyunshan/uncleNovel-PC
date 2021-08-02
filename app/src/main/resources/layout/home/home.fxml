@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.unclezs.novel.app.framework.components.sidebar.SidebarMenu?>
+<?import com.unclezs.novel.app.framework.components.sidebar.SidebarMenuItem?>
+<?import com.unclezs.novel.app.framework.components.sidebar.SidebarNavigation?>
+<?import com.unclezs.novel.app.framework.components.StageDecorator?>
+<?import javafx.scene.layout.VBox?>
+<StageDecorator xmlns:fx="http://javafx.com/fxml/1" logo="/assets/logo/icon-32.png" max="true"
+  min="true"
+  minHeight="${decorator.prefHeight}" minWidth="${decorator.prefWidth}" prefHeight="660.0" prefWidth="940.0"
+  setting="true"
+  theme="true" title="%app.title" xmlns="https://javafx.com/javafx/16"
+  fx:controller="com.unclezs.novel.app.main.views.home.HomeView"
+  fx:id="decorator">
+  <SidebarNavigation VBox.vgrow="ALWAYS" prefWidth="${decorator.width}">
+    <SidebarMenu name="%home.menu.search">
+      <SidebarMenuItem
+        icon="search"
+        text="%home.menu.search.internal"
+        view="com.unclezs.novel.app.main.views.home.SearchNovelView"/>
+      <SidebarMenuItem
+        icon="search_network"
+        text="%home.menu.search.network"
+        view="com.unclezs.novel.app.main.views.home.SearchNetworkView"/>
+      <SidebarMenuItem
+        icon="search_audio"
+        text="%home.menu.search.audio"
+        view="com.unclezs.novel.app.main.views.home.SearchAudioView"/>
+    </SidebarMenu>
+    <SidebarMenu name="%home.menu.read">
+      <SidebarMenuItem selected="true"
+        icon="bookshelf"
+        text="%home.menu.read.text"
+        view="com.unclezs.novel.app.main.views.home.FictionBookshelfView"/>
+      <SidebarMenuItem
+        icon="audio_bookshelf"
+        text="%home.menu.read.audio"
+        view="com.unclezs.novel.app.main.views.home.AudioBookShelfView"/>
+    </SidebarMenu>
+    <SidebarMenu name="%home.menu.download">
+      <SidebarMenuItem
+        icon="analysis_download"
+        text="%home.menu.download.analysis"
+        view="com.unclezs.novel.app.main.views.home.AnalysisView"/>
+      <SidebarMenuItem
+        icon="download_management"
+        text="%home.menu.download.management"
+        view="com.unclezs.novel.app.main.views.home.DownloadManagerView"/>
+    </SidebarMenu>
+    <SidebarMenu name="%home.menu.rule">
+      <SidebarMenuItem
+        icon="rule_text"
+        text="%home.menu.rule.text"
+        view="com.unclezs.novel.app.main.views.home.RuleManagerView"/>
+    </SidebarMenu>
+    <SidebarMenu name="%home.menu.setting">
+      <SidebarMenuItem
+        icon="config"
+        text="%home.menu.setting.app"
+        view="com.unclezs.novel.app.main.views.home.SettingView"/>
+    </SidebarMenu>
+  </SidebarNavigation>
+</StageDecorator>

@@ -1,0 +1,41 @@
+@import "../../define/global";
+
+.home-setting-popup {
+  @include ladderTextFill(theme-bg-color);
+  -fx-padding: 10px;
+  -fx-alignment: center-left;
+  -fx-background-color: theme-bg-color;
+
+  .icon-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 13px;
+    -fx-pref-width: 140px;
+    -fx-text-fill: inherit;
+    -fx-border-radius: 3px;
+    -fx-min-height: 30px;
+    -fx-background-radius: 3px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 10px;
+
+    &:hover {
+      @include ladderTextFill(theme-color);
+      @include shadow-br-3(derive(-fx-text-fill, -100%));
+      -fx-background-color: theme-color;
+    }
+
+    .icon {
+      -fx-icon-size: 14px;
+      -fx-max-width: 18px;
+      -fx-min-width: 18px;
+      -fx-pref-width: 18px;
+      -fx-text-fill: inherit;
+    }
+  }
+
+  .home-setting-popup-delimiter {
+    -fx-max-height: 1px;
+    -fx-min-height: 1px;
+    -fx-background-color: theme-color-dark;
+  }
+}

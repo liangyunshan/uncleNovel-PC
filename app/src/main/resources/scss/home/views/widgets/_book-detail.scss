@@ -1,0 +1,58 @@
+@import "../../../define/global";
+
+.book-detail {
+  -fx-spacing: 10;
+  -fx-alignment: center-left;
+
+  .info {
+    -fx-spacing: 5px;
+    -fx-min-width: 280px;
+    -fx-max-width: 280px;
+
+    .label {
+      -fx-font-size: 12px !important;
+    }
+
+    .item {
+      -fx-alignment: center-left;
+
+      &.title {
+        .item-content {
+          -fx-font-size: 15px !important;
+          -fx-font-weight: bold !important;
+        }
+      }
+
+      .editable-box {
+        -fx-alignment: center-left;
+        -fx-spacing: 5px;
+
+        .text-field {
+          -fx-font-size: 12px !important;
+          -fx-font-weight: normal !important;
+        }
+
+        .icon {
+          -fx-min-width: 20px;
+        }
+
+        .label {
+          -fx-max-width: 200px;
+        }
+      }
+
+      .item-label {
+        -fx-min-width: 30px;
+      }
+    }
+  }
+
+  .desc .label {
+    -fx-font-size: 12px !important;
+    -fx-max-height: 200px;
+  }
+
+  .actions {
+    -fx-spacing: 20px;
+  }
+}

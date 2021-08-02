@@ -1,0 +1,81 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.9" apply false
+    id "io.spring.dependency-management" version "1.0.9.RELEASE" apply false
+    id "com.unclezs.gradle.sass" version "1.0.10" apply false
+}
+
+ext {
+    jfxProject = ['app', 'app-framework']
+    jfxProject = subprojects.findAll { jfxProject.contains(it.name) }
+}
+
+allprojects {
+    group = "com.unclezs.novel.app"
+    version = property("app.version")
+    description = "Uncle Novel Project"
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
+}
+
+
+subprojects { project ->
+
+    apply plugin: "java"
+    apply from: "${rootDir}/gradle/publications.gradle"
+    apply from: "${rootDir}/gradle/dependency-management.gradle"
+
+    sourceSets {
+        main.output.resourcesDir = main.java.classesDirectory
+    }
+
+    ext.compilerArgs = []
+    // 模块化编译参数
+    File vmArgs = file("$projectDir/${project.name}.modularity")
+    if (vmArgs.exists()) {
+        vmArgs.readLines().each {
+            if (!it.isBlank() && !it.startsWith("//") && !it.startsWith("--add-opens")) {
+                ext.compilerArgs.add(it)
+            }
+        }
+    }
+
+    tasks.withType(JavaCompile) {
+        options.fork = true
+        options.encoding = "UTF-8"
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+
+        // 模块化编译参数
+        options.compilerArgs.addAll(compilerArgs)
+    }
+
+    dependencies {
+        compileOnly "org.projectlombok:lombok"
+        annotationProcessor "org.projectlombok:lombok"
+        testImplementation "org.junit.jupiter:junit-jupiter-api"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine"
+    }
+
+    test {
+        useJUnitPlatform()
+        include(["**/*Tests.class", "**/*Test.class"])
+    }
+}
+
+configure(jfxProject) { project ->
+    apply plugin: "org.openjfx.javafxplugin"
+    apply plugin: "com.unclezs.gradle.sass"
+
+    javafx {
+        version = "16"
+        modules = ["javafx.base", "javafx.controls", "javafx.fxml", "javafx.graphics", "javafx.media", "javafx.swing", "javafx.web"]
+    }
+
+    jar {
+        exclude "**/scss/**"
+    }
+}

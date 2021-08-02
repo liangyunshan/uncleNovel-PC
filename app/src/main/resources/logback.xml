@@ -1,0 +1,127 @@
+<!--
+    @author blog.unclezs.com
+    @date   2020/12/05 10:56
+
+    debug 开启配置加载状态信息打印
+    scan：检测日志被修改后重新加载
+    scanPeriod：配置修改重新加载扫描周期，取值可以看ch.qos.logback.core.util.Duration.valueOf()
+    packagingData：是否开启对于异常日志显示每个栈信息是在哪个jar包和版本
+
+    技巧：
+    1. 如果不知道标签属性怎么写有哪些，可以查看 标签名字Action这个类  ，比如configuration： ConfigurationAction
+    2. 如果不知道标签内可以嵌套哪些标签，可以查询他的Class字段对应的类，看有哪些成员变量有set方法
+    3. 如果不知道class该写哪个，可以直接通过查询标签名字的那个类，比如Appender，Encoder，看看有哪些实现类即可
+    4. 配置写的时候最好开启debug=true，或者加个StatusListener,或者手动打印StatusPrinter.print(context) 知道哪些配置写错了或者警告及时修改
+-->
+<configuration debug="false" packagingData="false" scan="false" scanPeriod="1 day">
+  <!--设置应用名称-->
+  <property name="log_path" value="${LOG_PATH :- logs}"/>
+
+  <!--获取当前时间 ${today}获取-->
+  <property name="highlight_pattern"
+    value="%red(%d{HH:mm:ss}) %green([%thread]) %highlight(%-5level) %boldMagenta(%logger{30}) - %cyan(%msg%n)"/>
+  <!--Appender部分-->
+  <!--控制台彩色日志-->
+  <property name="pattern"
+    value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n"/>
+  <!--每天输出一个文件，并且保存文件到对应的日志级别目录-->
+  <property name="max_history" value="${maxHistory :- 0}"/>
+  <!--输出INFO日志到文件 每天一个文件-->
+  <property name="total_size_cap" value="${totalSizeCap :- 0}"/>
+  <property name="history_time" value="${historyTime :- yyyy-MM-dd}"/>
+  <property name="app_name" value="${appName :- log}"/>
+  <timestamp datePattern="yyyy-MM-dd" key="today"/>
+  <!--属性部分-->
+  <!--日志文件路径-->
+  <appender class="ch.qos.logback.core.ConsoleAppender" name="console">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <outputPatternAsHeader>false</outputPatternAsHeader>
+      <!--在头部打印出pattern-->
+      <pattern>${highlight_pattern}</pattern>
+    </encoder>
+    <!--立即刷新到流-->
+    <immediateFlush>true</immediateFlush>
+  </appender>
+  <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度,%msg：日志消息，%n是换行符-->
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="debug">
+    <append>true</append>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${pattern}</pattern>
+    </encoder>
+    <file>${log_path}/${app_name}-debug.log</file>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>debug</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${log_path}/debug/%d{${history_time}}-debug.log</fileNamePattern>
+    </rollingPolicy>
+  </appender>
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="info">
+    <!--只接受INFO级别的日志-->
+    <append>true</append>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${pattern}</pattern>
+    </encoder>
+    <!--文件追加模式-->
+    <file>${log_path}/${app_name}-info.log</file>
+    <!--滚动策略-->
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>info</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <!--匹配器 也有触发器的作用 下面这个是按照时间每天出发 后缀为gz、zip则压缩，其他则不压缩-->
+      <cleanHistoryOnStart>false</cleanHistoryOnStart>
+      <fileNamePattern>${log_path}/info/%d{${history_time}}-info.log</fileNamePattern>
+      <maxHistory>${total_size_cap}</maxHistory>
+      <!--启动的时候清除历史日志文件-->
+      <totalSizeCap>${max_history}</totalSizeCap>
+    </rollingPolicy>
+  </appender>
+  <!--日志文件最大数量 0 代表无限-->
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="warn">
+    <append>true</append>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${pattern}</pattern>
+    </encoder>
+    <file>${log_path}/${app_name}-warn.log</file>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>warn</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${log_path}/warn/%d{${history_time}}-warn.log</fileNamePattern>
+    </rollingPolicy>
+  </appender>
+  <!--总的日志文件大小上限  0无限容量 单位GB MB KB-->
+  <appender class="ch.qos.logback.core.rolling.RollingFileAppender" name="error">
+    <append>true</append>
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>${pattern}</pattern>
+    </encoder>
+    <file>${log_path}/${app_name}-error.log</file>
+    <filter class="ch.qos.logback.classic.filter.LevelFilter">
+      <level>error</level>
+      <onMatch>ACCEPT</onMatch>
+      <onMismatch>DENY</onMismatch>
+    </filter>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>${log_path}/error/%d{${history_time}}-error.log</fileNamePattern>
+    </rollingPolicy>
+  </appender>
+
+  <logger additivity="false" level="trace" name="com.unclezs">
+    <appender-ref ref="debug"/>
+    <appender-ref ref="info"/>
+    <appender-ref ref="warn"/>
+    <appender-ref ref="error"/>
+    <appender-ref ref="console"/>
+  </logger>
+  <root level="off">
+    <appender-ref ref="console"/>
+  </root>
+</configuration>

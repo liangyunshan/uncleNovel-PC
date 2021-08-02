@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+plugins {
+    id "java-gradle-plugin"
+    id "io.spring.dependency-management" version "1.0.9.RELEASE" apply false
+}
+apply from: "../gradle/dependency-management.gradle"
+repositories {
+    gradlePluginPortal()
+    mavenLocal()
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        "app-packager" {
+            id = 'app-packager'
+            implementationClass = 'com.unclezs.novel.app.packager.PackagePlugin'
+        }
+    }
+}
+
+dependencies {
+    annotationProcessor "org.projectlombok:lombok"
+    compileOnly "org.projectlombok:lombok"
+
+    implementation "com.unclezs:jfx-launcher"
+    implementation "com.google.code.gson:gson"
+
+    implementation "cn.hutool:hutool-all"
+
+    // packager
+    implementation 'org.apache.velocity:velocity-engine-core'
+    implementation 'com.netflix.nebula:gradle-ospackage-plugin'
+    implementation 'net.jsign:jsign-core'
+}

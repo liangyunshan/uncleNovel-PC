@@ -1,0 +1,8 @@
+@import "../../define/_global.scss";
+@import "default";
+
+$theme-color: rgb(52, 152, 219);
+$header-bg-color: $theme-color;
+$theme-color-light: rgba(52, 152, 219, 0.2);
+$theme-icon-hover-color: $theme-color;
+@import "theme";

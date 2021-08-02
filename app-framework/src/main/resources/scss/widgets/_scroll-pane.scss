@@ -1,0 +1,56 @@
+@import "../define/global";
+
+
+.scroll-pane {
+  -fx-background-color: transparent;
+
+  .viewport {
+    -fx-background-color: transparent;
+  }
+}
+
+.scroll-bar {
+  // 滚动条颜色
+  -fx-color: -fx-base;
+  // 滚动条hover颜色
+  -fx-hover-color: #888;
+
+  -fx-pref-width: 10px;
+  -fx-background-color: transparent;
+
+  .track {
+    -fx-background-color: transparent;
+  }
+
+  .track-background {
+    -fx-background-color: transparent;
+  }
+
+  .thumb {
+    -fx-background-color: -fx-color;
+
+    &:hover, &:pressed {
+      -fx-background-color: -fx-hover-color;
+    }
+  }
+
+  .increment-button {
+    -fx-background-color: transparent;
+    -fx-max-height: 0;
+  }
+
+  .increment-arrow {
+    -fx-background-color: transparent;
+    -fx-max-height: 0;
+  }
+
+  .decrement-button {
+    -fx-background-color: transparent;
+    -fx-max-height: 0;
+  }
+
+  .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-max-height: 0;
+  }
+}

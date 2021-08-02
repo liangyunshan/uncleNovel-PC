@@ -1,0 +1,92 @@
+@import "../define/global";
+
+.btn {
+  @include ladderTextFillForce(theme-color);
+  -fx-background-color: theme-color;
+  -fx-alignment: center;
+
+  .icon {
+    -fx-icon-size: 12px !important;
+    @include ladderTextFillForce(theme-color);
+  }
+}
+
+.stop-search {
+  -fx-background-color: #d42323;
+  -fx-background-radius: 35px;
+  -fx-pref-width: 40px;
+  -fx-pref-height: 40px;
+  -fx-content-display: GRAPHIC_ONLY;
+  @include shadow();
+
+  .icon {
+    -fx-background-radius: inherit;
+    -fx-icon-size: 12px;
+    -fx-text-fill: #eae2e2;
+  }
+}
+
+.container {
+  -fx-spacing: 10px;
+
+  .placeholder {
+    & > .tip {
+      -fx-text-fill: theme-color-dark;
+      -fx-font-size: 20px;
+    }
+
+    & > .icon {
+      -fx-text-fill: theme-color-dark;
+      -fx-icon-size: 50px;
+    }
+  }
+}
+
+.float-actions {
+  -fx-spacing: 10;
+
+  .icon-button {
+    @include shadow-1();
+    -fx-background-color: theme-color;
+    -fx-background-radius: 45px;
+    -fx-pref-height: 45px;
+    -fx-pref-width: 45px;
+    -fx-min-width: -fx-pref-width;
+    -fx-max-width: -fx-pref-width;
+    -fx-min-height: -fx-pref-height;
+    -fx-max-height: -fx-pref-height;
+
+    .icon {
+      @include ladderTextFill(theme-color);
+      -fx-icon-size: 18px;
+    }
+  }
+
+  .primary-button {
+    -fx-pref-height: 50px;
+    -fx-pref-width: 50px;
+    -fx-min-width: -fx-pref-width;
+    -fx-max-width: -fx-pref-width;
+    -fx-min-height: -fx-pref-height;
+    -fx-max-height: -fx-pref-height;
+
+    .icon {
+      -fx-icon-size: 23px;
+    }
+  }
+}
+
+@import "views/search-novel";
+@import "views/search-audio";
+@import "views/search-network";
+@import "views/audio-bookshelf";
+@import "views/fiction-bookshelf";
+@import "views/analysis-download";
+@import "views/download-manager";
+@import "views/rule-manager";
+@import "views/rule-editor";
+@import "views/import-book";
+@import "views/widgets/book-detail";
+@import "views/setting";
+@import "views/header-menu";
+@import "views/theme";

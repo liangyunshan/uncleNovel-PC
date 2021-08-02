@@ -1,0 +1,56 @@
+@import "../../define/global";
+@import "widgets/search-engine-editor";
+
+.setting-view {
+  -fx-padding: 10px;
+  -fx-border-color: transparent;
+  -fx-background-color: transparent;
+
+  .setting-items {
+    -fx-spacing: 10px;
+
+    .items-name {
+      -fx-border-color: theme-color;
+      -fx-border-width: 0 0 0 5px;
+      -fx-padding: 0 0 0 5px;
+      -fx-font-size: 14px;
+    }
+
+    .items-box {
+      -fx-padding: 0 0 0 15px;
+      -fx-spacing: 20px;
+
+      .setting-item {
+        -fx-alignment: center-left;
+        -fx-spacing: 10px;
+
+        .item-name {
+          -fx-text-fill: theme-color-dark;
+        }
+
+        .item-content {
+          -fx-spacing: 10px;
+          -fx-padding: 0 0 0 20px;
+        }
+      }
+    }
+  }
+
+  .search-engine-setting {
+    .search-engine-manager {
+      -fx-max-height: 150px;
+      -fx-alignment: top-right;
+
+      .actions {
+        -fx-alignment: center-right;
+        -fx-spacing: 10;
+      }
+    }
+
+    .items-box {
+      -fx-padding: 0;
+    }
+  }
+}
+
+

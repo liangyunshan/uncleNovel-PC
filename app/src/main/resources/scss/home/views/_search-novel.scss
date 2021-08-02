@@ -1,0 +1,37 @@
+@import "../../define/global";
+
+.search-novel {
+  .container {
+    -fx-spacing: 0;
+
+    .result-list {
+
+      .list-cell {
+        -fx-content-display: GRAPHIC_ONLY;
+        -fx-padding: 5px 5px 5px 8px;
+
+        .cell {
+          -fx-alignment: center-left;
+          -fx-spacing: 10;
+
+          .title {
+            -fx-font-size: 14px;
+            -fx-font-weight: bold;
+          }
+
+          .tags {
+            -fx-spacing: 10px;
+          }
+        }
+      }
+    }
+
+    .progress-bar {
+      -fx-min-height: 2;
+
+      .bar {
+        -fx-padding: 2;
+      }
+    }
+  }
+}

@@ -1,0 +1,94 @@
+@import "../../define/global";
+
+.rule-editor {
+  .container {
+    .rule-container {
+      -fx-padding: 10px 10px 10px 0;
+
+      .items {
+        -fx-padding: 0 0 10px 5px;
+        -fx-spacing: 10px;
+
+        &.no-name {
+          -fx-padding: 0 0 10px 0;
+
+          & > .item > .name {
+            -fx-min-width: 70px;
+            -fx-max-width: 70px;
+            -fx-padding: 0;
+          }
+        }
+
+        & > .title-box {
+          -fx-alignment: center-left;
+
+          & > .title {
+            -fx-font-size: 14px;
+            -fx-border-width: 0 0 0 4px;
+            -fx-border-color: theme-color;
+            -fx-padding: 0 0 0 5px;
+          }
+        }
+
+        .item {
+          -fx-spacing: 10px;
+          -fx-alignment: center-left;
+
+          & > .name {
+            -fx-min-width: 90px;
+            -fx-max-width: 90px;
+            -fx-padding: 0 0 0 15px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.common-rule-editor {
+  .action-box {
+    -fx-alignment: center-left;
+    -fx-spacing: 10;
+
+    .combo-box {
+      -fx-pref-width: 120;
+      -fx-alignment: center-left;
+    }
+  }
+
+  .title-label {
+    -fx-font-size: 13px !important;
+  }
+
+  .button {
+    @include shadow-1();
+    -fx-pref-height: 30px;
+  }
+}
+
+.params-editor {
+  -fx-spacing: 10;
+
+  .item {
+    -fx-spacing: 10px;
+    -fx-alignment: center-left;
+
+    .label, .text-field, .text-area {
+      -fx-font-size: 12px !important;
+    }
+
+    .check-box {
+      -jfx-disable-visual-focus: true;
+    }
+
+    .text-area {
+      -fx-max-height: 70px;
+    }
+
+    & > .name {
+      -fx-min-width: 60px;
+      -fx-max-width: 60px;
+      -fx-padding: 0;
+    }
+  }
+}
