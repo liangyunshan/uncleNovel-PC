@@ -29,15 +29,15 @@ ps:
 ---
 uncle-novel中是依赖jfx-launcher生成的启动器从源码作者配置的服务器上检查更新，如果有更新则会拉取更新内容到
 本地    
-<img src="https://github.com/liangyunshan/uncleNovel-PC/app/packager/screenshot/launcher.png"/>   
+<img src="https://github.com/liangyunshan/uncleNovel-PC/tree/main/app/packager/screenshot/launcher.png"/>   
 其中最终要的就是拉取app.jar到Uncle小说\runtime\modules目录中，这个app.jar是主程序的jar包
 jfx-launcher拉取更新后会启动app.jar.    
 按照上述的执行过程，如果更新后的app.jar中有告警弹窗，软件就无法正常使用了。    
 所以我这边通过修改**jfx-launcher**中的代码，来屏蔽掉拉取更新更新功能。   
 接着重新编译**jfx-launcher**生成jfx-launcher-1.1.9.jar替换到本地的gradle仓库中对应的jfx-launcher路径下   
-<img src="https://github.com/liangyunshan/uncleNovel-PC/app/packager/screenshot/luncher-fix.png"/>    
+<img src="https://github.com/liangyunshan/uncleNovel-PC/tree/main/app/packager/screenshot/luncher-fix.png"/>    
 另外，通过修改**uncle-novel**中的代码，来屏蔽掉告警弹窗功能。    
-<img src="https://github.com/liangyunshan/uncleNovel-PC/app/packager/screenshot/app-fix.png"/>   
+<img src="https://github.com/liangyunshan/uncleNovel-PC/tree/main/app/packager/screenshot/app-fix.png"/>   
 最后重新编译打包**uncle-novel**，将生成的**Uncle小说.exe**替换到Uncle小说中，并将app\build\libs中的app-5.0.38.jar
 重命名位app.jar并替换到Uncle小说\runtime\modules文件夹中。
 
